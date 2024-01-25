@@ -66,9 +66,9 @@
     {
       "id": "pointer:pointer",
       "typeName": "pointer",
-      "x": 432.00518798828125,
-      "y": 258.0078125,
-      "lastActivityTimestamp": 1706139313544,
+      "x": 387.8385314941406,
+      "y": 321.34112548828125,
+      "lastActivityTimestamp": 1706141735572,
       "meta": {}
     },
     {
@@ -120,12 +120,12 @@
       "screenBounds": {
         "x": 0,
         "y": 0,
-        "w": 896.6666259765625,
-        "h": 399.1666564941406
+        "w": 615,
+        "h": 449.1666564941406
       },
       "insets": [
         false,
-        true,
+        false,
         true,
         false
       ],
@@ -149,8 +149,8 @@
       "typeName": "instance"
     },
     {
-      "x": 526.1510620117188,
-      "y": 38.89320373535156,
+      "x": 10.135475158691406,
+      "y": 52.369781494140625,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
