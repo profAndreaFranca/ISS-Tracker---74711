@@ -8,45 +8,64 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
+  ImageBackground,
 } from "react-native";
+
+var bgImage = require('../assets/bg.png')
+var meteorIcon = require("../assets/meteor_icon.png")
+var rocketIcon = require("../assets/rocket_icon.png")
+var issIcon = require("../assets/iss_icon.png")
 
 export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <SafeAreaView style={styles.droidSafeArea} />
+        <ImageBackground source={bgImage} style={styles.backgroundImage}> 
         <View style={styles.titleBar}>
           <Text style={styles.titleText}> ISSTracker </Text>
         </View>
-        <TouchableOpacity style={styles.routeCard}>
-          {/* <Image style={styles.imageIcon}/> */}
+        <TouchableOpacity style={styles.routeCard}
+          onPress={()=> this.props.navigation.navigate("ISSLocation")}
+        >
+          <Image style={styles.imageIcon} source={issIcon}/>
           <Text style={styles.routeText}>ISS Location</Text>
           <Text style={styles.knowMore}>know more</Text>
           <Text style={styles.bgDigit}>1</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.routeCard}>
-          {/* <Image style={styles.imageIcon}/> */}
+        <TouchableOpacity style={styles.routeCard}
+          onPress={()=> this.props.navigation.navigate("Meteors")}
+        >
+          <Image style={styles.imageIcon} source={meteorIcon}/>
           <Text style={styles.routeText}>Meteors</Text>
           <Text style={styles.knowMore}>know more</Text>
           <Text style={styles.bgDigit}>2</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.routeCard}>
-          {/* <Image style={styles.imageIcon}/> */}
+        <TouchableOpacity style={styles.routeCard}
+          onPress={()=> this.props.navigation.navigate("Updates")}
+        >
+          <Image style={styles.imageIcon} source={rocketIcon}/>
           <Text style={styles.routeText}>Updates</Text>
           <Text style={styles.knowMore}>know more</Text>
           <Text style={styles.bgDigit}>3</Text>
         </TouchableOpacity>
+        </ImageBackground>
       </View>
     );
   }
 }
 
+//Iago - ImageBackground
+//Francesco - Images
+//Alexandre - Navegação
+//João - Styles
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
+    // backgroundColor: "pink",
   },
   titleBar: {
     // backgroundColor: "blue",
@@ -70,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 30,
   },
-  imageIcon: {},
+  
   routeText: {
     fontSize:35,
     fontWeight:"bold",
@@ -84,7 +103,25 @@ const styles = StyleSheet.create({
     fontSize:15
   },
   bgDigit: {
-    
+    position:"absolute",
+    color:"rgba(183,183,183,0.5)",
+    fontSize:150,
+    zIndex:-1,
+    right:20,
+    bottom:-15
 
+
+  },
+  backgroundImage:{
+    flex:1,
+    resizeMode:"cover"
+  },
+  imageIcon: {
+    position:"absolute",
+    height:200,
+    width:200,
+    resizeMode:"contain",
+    top:-80,
+    right:20
   },
 });
