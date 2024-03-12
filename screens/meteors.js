@@ -27,6 +27,35 @@ export default class Meteors extends React.Component {
       .catch((error) => Alert.alert(error.message))
   };
 
+  keyExtractor = (item, index) => index.toString()
+
+  //criar o renderItem
+ 
+ renderItem = ({item}) => {
+  let meteor = item;
+  let bgImg;
+  let size;
+  let speed;
+
+  if (meteor.pontuacao_Risco<=30){
+    bgImg = require("../assets/meteor_bg1.png")
+    speed = require("../assets/meteor_speed1.gif")
+    size = 100
+  }else if (meteor.pontuacao_Risco<=75) {
+    bgImg = require("../assets/meteor_bg2.png")
+    speed = require("../assets/meteor_speed2.gif")
+    size = 150
+  }else{
+    bgImg = require("../assets/meteor_bg3.png")
+    speed = require("../assets/meteor_speed3.gif")
+    size = 200
+  }
+ }
+  // Francisco
+  // João
+  
+
+
   render() {
     //criar uma condição para exibir carregando até que os dados estejam disponíveis - alexandre
     if(Object.keys(this.state.meteors).length == 0){
@@ -39,6 +68,7 @@ export default class Meteors extends React.Component {
       )
     }else{
     //mapear os meteoros - João
+
     var meteorArray = Object.keys(this.state.meteors).map(meteorDate=>{
       return this.state.meteors[meteorDate]
     })
@@ -54,32 +84,36 @@ export default class Meteors extends React.Component {
     //ordenar meteoros conforme pontuação de risco - Iago
     
     meteors.sort(function(A,B){
-      return B.pontuacaoRisco - A.pontuacaoRisco
+      return B.pontuacao_Risco - A.pontuacao_Risco
     })
+
+    //fatiar/recortar os 5 mais críticos.
     meteors = meteors.slice(0,5)
     
-    
+    //criar um flatlist para exibir os meteoros - Francesco
     return (
       <View style={styles.container}>
-        <Text> Meteors </Text>
+      <SafeAreaView style={styles.droidSafeArea}/>
+      <FlatList
+        data = {meteors}
+        renderItem = {this.renderItem}
+        keyExtractor = {this.keyExtractor}
+        horizontal = {true}
+      /> 
       </View>
     );
     }
-    
-
-    
-
- 
-
-
-    
   }
 }
-
+//criar os estilos
+     //Alexandre
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  droidSafeArea: {
+    marginTop: Platform.OS === "android"? StatusBar.currentHeight: 0,
+  }
 });
